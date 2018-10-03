@@ -1,6 +1,7 @@
 
 import React from 'react';
 import Image from './image';
+import Lightbox from './lightbox'
 import PropTypes from 'prop-types';
 
 export default class Gallery extends React.Component{
@@ -8,19 +9,29 @@ export default class Gallery extends React.Component{
     super(props);
 
     this.state = {
+      isLightboxActive: false,
+      lightboxImage: {},
       imageWidth: 300,
       imageHeight: 300,
       images: props.images
     };
   }
 
-  handleClick = (event, key) => {
-    console.log(key);
-    console.log(event.target);
+  handleImageClick = (event, key) => {
     const img = this.state.images.find(image => {
       return image.id === key;
     });
-    console.log(img);
+    
+    this.setState({
+      isLightboxActive: true,
+      lightboxImage: img
+    });
+  }
+
+  handleLightboxClick = (event) => {
+    this.setState({
+      isLightboxActive: false
+    });
   }
 
   render() {
@@ -28,14 +39,26 @@ export default class Gallery extends React.Component{
       return (
         <div className="image-container">
           <Image id={imgData.id} url={imgData.url} width={this.state.imageWidth}
-          height={this.state.imageHeight} imageClicked={this.handleClick}/>
+          height={this.state.imageHeight} imageClicked={this.handleImageClick}/>
         </div>
       )
     });
 
+    let renderLightbox = <div></div>;     
+    if (this.state.isLightboxActive) {
+      renderLightbox = (
+        <div>
+          <Lightbox url={this.state.lightboxImage.url} lightboxClicked={this.handleLightboxClick} />
+        </div>
+      )
+    } 
+
     return (
       <div>
-        {renderedImages}
+        {renderLightbox}
+        <div>
+          {renderedImages}
+        </div>
       </div>
     );
   }
