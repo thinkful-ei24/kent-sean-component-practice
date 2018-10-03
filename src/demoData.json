@@ -1,0 +1,26 @@
+[
+  {
+    "url": "https://placekitten.com/600/600",
+    "title": "title",
+    "content": "image descr/info",
+    "id": 1
+  },
+  {
+    "url": "https://placekitten.com/550/600",
+    "title": "title2",
+    "content": "image descr/info",
+    "id": 2
+  },
+  {
+    "url": "https://placekitten.com/800/600",
+    "title": "title3",
+    "content": "image descr/info",
+    "id": 3
+  },
+  {
+    "url": "https://placekitten.com/900/900",
+    "title": "title4",
+    "content": "image descr/info",
+    "id": 4
+  }
+]
