@@ -14,15 +14,20 @@ export default class Gallery extends React.Component{
     };
   }
 
-  handleClick = (event) => {
-    console.log(event.target.src);
+  handleClick = (event, key) => {
+    console.log(key);
+    console.log(event.target);
+    const img = this.state.images.find(image => {
+      return image.id === key;
+    });
+    console.log(img);
   }
 
   render() {
     const renderedImages = this.state.images.map(imgData => {
       return (
         <div className="image-container">
-          <Image key={imgData.id} url={imgData.url} width={this.state.imageWidth}
+          <Image id={imgData.id} url={imgData.url} width={this.state.imageWidth}
           height={this.state.imageHeight} imageClicked={this.handleClick}/>
         </div>
       )
